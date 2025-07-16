@@ -89,7 +89,7 @@ export function useStars(page = 1, limit = 2) {
     if (!validateForm(formData)) return;
     try {
       const response = await fetch(
-        `http://localhost:3001/hollywoodStars/${currentStar._id}`,
+        `https://backendnextcrud.onrender.com/hollywoodStars//${currentStar._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -123,7 +123,7 @@ export function useStars(page = 1, limit = 2) {
   const submitCreate = async () => {
     if (!validateForm(createFormData)) return;
     try {
-      const res = await fetch("http://localhost:3001/hollywoodStars", {
+      const res = await fetch("https://backendnextcrud.onrender.com/hollywoodStars", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(createFormData),
@@ -147,7 +147,7 @@ export function useStars(page = 1, limit = 2) {
   const handleDelete = async (id: string) => {
     try {
       const response = await fetch(
-        `http://localhost:3001/hollywoodStars/${id}`,
+        `https://backendnextcrud.onrender.com/hollywoodStars/${id}`,
         {
           method: "DELETE",
         }
@@ -170,7 +170,7 @@ export function useStars(page = 1, limit = 2) {
     try {
       setLoading(true);
       const res = await fetch(
-        `http://localhost:3001/hollywoodStars?page=${page}&limit=${limit}&search=${encodeURIComponent(searchTerm)}`
+        `https://backendnextcrud.onrender.com/hollywoodStars?page=${page}&limit=${limit}&search=${encodeURIComponent(searchTerm)}`
       );
       const data = await res.json();
       setStars(data.data || []);
