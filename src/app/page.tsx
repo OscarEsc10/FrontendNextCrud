@@ -81,7 +81,8 @@ export default function HomePage() {
           className="flex flex-col justify-center items-center h-64 gap-4 animate-fadeIn"
         >
           <div className="relative">
-            <div className="w-16 h-16 rounded-full border-4 border-blue-500 border-dashed animate-spinCustom shadow-blue-500 shadow-lg" />
+            <div className="w-16 h-16 rounded-full border-4 border-blue-500 border-dashed animate-spinCustom 
+            shadow-blue-500 shadow-lg" />
             <div className="absolute top-0 left-0 w-16 h-16 rounded-full animate-pulse border border-blue-400" />
           </div>
         </div>
