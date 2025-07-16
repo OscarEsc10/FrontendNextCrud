@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import 'dotenv/config';
 /**
  * Custom React hook for managing CRUD operations and form state
  * for a list of Hollywood stars.
@@ -10,6 +10,11 @@ import { useEffect, useState } from "react";
  * - Form validation
  * - Modal management (edit/create)
  */
+
+const BASE_URL =
+  process.env.NEXT_PUBLIC_BACKEND_URL ||
+  "https://backendnextcrud.onrender.com";
+
 export function useStars(page = 1, limit = 2) {
   // List of stars fetched from the backend
   const [stars, setStars] = useState([]);
@@ -89,7 +94,7 @@ export function useStars(page = 1, limit = 2) {
     if (!validateForm(formData)) return;
     try {
       const response = await fetch(
-        `https://backendnextcrud.onrender.com/hollywoodStars//${currentStar._id}`,
+        `${BASE_URL}/hollywood/${currentStar._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -123,7 +128,7 @@ export function useStars(page = 1, limit = 2) {
   const submitCreate = async () => {
     if (!validateForm(createFormData)) return;
     try {
-      const res = await fetch("https://backendnextcrud.onrender.com/hollywoodStars", {
+      const res = await fetch(`${BASE_URL}/hollywoodStars`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(createFormData),
@@ -147,7 +152,7 @@ export function useStars(page = 1, limit = 2) {
   const handleDelete = async (id: string) => {
     try {
       const response = await fetch(
-        `https://backendnextcrud.onrender.com/hollywoodStars/${id}`,
+        `${BASE_URL}/hollywoodStars/${id}`,
         {
           method: "DELETE",
         }
@@ -170,7 +175,7 @@ export function useStars(page = 1, limit = 2) {
     try {
       setLoading(true);
       const res = await fetch(
-        `https://backendnextcrud.onrender.com/hollywoodStars?page=${page}&limit=${limit}&search=${encodeURIComponent(searchTerm)}`
+        `${BASE_URL}/hollywoodStars?page=${page}&limit=${limit}&search=${encodeURIComponent(searchTerm)}`
       );
       const data = await res.json();
       setStars(data.data || []);
